@@ -1,0 +1,37 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+
+		  // Based on Browserlist
+		  // WHen specifying/querying versions, names are case insensitive.
+		  "browsers": [
+			// Browsers with market share greater than 1%
+            "> 1%",
+
+			// Last 5 versions for all browsers
+            "last 5 versions",
+
+			// Safari versions 7 or greater (i.e. oldest version of Safari supported is 7)
+            "safari >= 7",
+
+			// Internet Explorer 10 or greater (i.e. oldest version of IE supported 10)
+            "ie >= 10"
+          ],
+		  // When using uglify-js to minify your code, you may run into syntax errors when
+		  // targeting later browsers since uglify-js does not support any ES2015+ syntax.
+		  // To prevent these errors - set the uglify option to true, which enables all
+		  // transformation plugins and as a result, your code is fully compiled to ES5.
+		  // However, the useBuiltIns option will still work as before and only include the
+		  // polyfills that your target(s) need.
+          "uglify": true
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "dynamic-import-webpack"
+  ]
+}

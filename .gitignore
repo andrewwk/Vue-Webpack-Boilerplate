@@ -1,0 +1,25 @@
+# Mac
+.DS_Store
+.DS_Store?
+
+# General
+log/
+*.log
+
+# Node
+npm-debug.log
+node_modules
+package-lock.json
+
+# Yarn
+
+
+# Webstorm
+*.idea/
+
+# Project
+dist
+app/assets/.DS_Store
+.env
+webpack-stats.json
+server/public

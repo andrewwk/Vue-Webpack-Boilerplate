@@ -1,0 +1,214 @@
+@import "~breakpoint-sass/stylesheets/breakpoint";
+
+// Breakpoints
+$iphoneplus: (min-height 600px) (max-height 736px); // iPhone 6 Plus, 6s Plus, 7 Plus
+$iphone: (min-height 500px) (max-height 599px); // iPhone 6, 6s, 7
+$iphone-small: (min-height 300px) (max-height 499px); // iPhone 4, SE, 5, 5s
+$phone: 300px 727px;
+$tablet: 728px 1024px;
+$phone-tablet: 300px 1024px;
+$desktop: 1025px 1399px;
+$desktop-all: 1025px;
+$large-desktop: 1400px;
+
+// Grid
+$grid-max: 1200px;
+$grid-pad: 0px (1200px + 40px);
+
+// Colours
+$black: #000000;
+$white: #ffffff;
+
+/* Border spacing */
+// Desktop
+$spacingTop: 6vh;
+$spacingLeft: 7vw;
+$spacingRight: 6vw;
+$spacingBottom: 5vh;
+// Mobile
+$spacingTopMobile: 24px;
+$spacingLeftMobile: 30px;
+$spacingRightMobile: 30px;
+$spacingBottomMobile: 24px;
+
+// Functions
+// Function to round floating points
+// source: https://gist.github.com/terkel/4373420
+@function decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+$default-width: 1440 !default;
+@function calc-vw($pixels, $width: $default-width) {
+  @return ($pixels / $width * 100vw);
+}
+
+$default-height: 900 !default;
+@function calc-vh($pixels, $height: $default-height) {
+  @return ($pixels / $height * 100vh);
+}
+
+/*
+  Function from http://emilolsson.com/tools/vw-unit-calc-an-online-responsive-css-font-size-calculator/
+  @params $target (REQUIRED) takes in a value in pixels, ex. 16px, 65px, etc.
+  @params $displayWidth takes in a number only. ex. 1440, 1920, etc.
+*/
+@function get-vw($target, $displayWidth : $default-width) {
+  $vw-context: ($displayWidth * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vw;
+}
+
+@mixin noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none;           /* Non-prefixed version */
+  outline: none;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+// Mixins
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin inputnoborder {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+
+@mixin background($size) {
+  background-size: $size;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+@mixin width($viewport) {
+  margin: 0 auto;
+
+  @if $viewport == 'desktop' {
+    width: calc(100vw - 288px);
+  }
+  @else if $viewport == 'tablet' {
+    width: calc(100vw - 90px);
+  }
+  @else if $viewport == 'mobile' {
+    width: calc(100vw - 40px);
+  }
+}
+
+/* Generic font mixins to apply to any or all fonts */
+@mixin font-props($size, $letter-spacing, $line-height) {
+  font-size: #{$size}px;
+  letter-spacing: #{decimal-round($letter-spacing / $size, 2)}em;
+  margin-right: -#{decimal-round($letter-spacing / $size, 2)}em;
+  line-height: #{$line-height}em;
+  color: $white;
+}
+
+@mixin font-normal($size, $letter-spacing, $line-height) {
+  @include font-props($size, $letter-spacing, $line-height);
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-light($size, $letter-spacing, $line-height) {
+  @include font-props($size, $letter-spacing, $line-height);
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Font family mixins */
+@mixin univers($size, $letter-spacing, $line-height: 1.0) {
+  @include font-normal($size, $letter-spacing, $line-height);
+  font-family: 'Univers-LT-Std', sans-serif;
+}
+
+@mixin gravity-book($size, $letter-spacing, $line-height: 1.0) {
+  @include font-normal($size, $letter-spacing, $line-height);
+  font-family: 'Gravity-Book', sans-serif;
+}
+
+@mixin gravity-bold($size, $letter-spacing, $line-height: 1.0) {
+  @include font-normal($size, $letter-spacing, $line-height);
+  font-family: 'Gravity-Bold', sans-serif;
+}
+
+@mixin gravity-light($size, $letter-spacing, $line-height: 1.0) {
+  @include font-normal($size, $letter-spacing, $line-height);
+  font-family: 'Gravity-Light', sans-serif;
+}
+
+@mixin calibre-reg($size, $letter-spacing, $line-height: 1.0) {
+  @include font-normal($size, $letter-spacing, $line-height);
+  font-family: 'Calibre-Regular', sans-serif;
+}
+
+/* This is used to line up the header with the rest of the elements per page. */
+@mixin common-center-container($type) {
+  // I changed % values to view values instead, as it will match zeplin values.
+  @if $type == 'padding' {
+    padding: $spacingTop $spacingRight $spacingBottom $spacingLeft;
+
+    @include breakpoint($phone-tablet) {
+      padding: $spacingTopMobile $spacingRightMobile $spacingBottomMobile $spacingLeftMobile;
+    }
+  }
+  @else if $type == 'margin' {
+    margin: $spacingTop $spacingRight $spacingBottom $spacingLeft;
+
+    @include breakpoint($phone-tablet) {
+      margin: $spacingTopMobile $spacingRightMobile $spacingBottomMobile $spacingLeftMobile;
+    }
+  }
+  @else if $type == 'absolute' {
+    position: absolute;
+    top: $spacingTop;
+    right: $spacingRight;
+    bottom: $spacingBottom;
+    left: $spacingLeft;
+
+    @include breakpoint($phone-tablet) {
+      top: $spacingTopMobile;
+      right: $spacingRightMobile;
+      bottom: $spacingBottomMobile;
+      left: $spacingLeftMobile;
+    }
+  }
+}
+

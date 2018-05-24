@@ -1,0 +1,88 @@
+@import "./vars";
+@import "./fonts";
+@import "./typography";
+
+html, body {
+  cursor: default;
+	padding: 0;
+	margin: 0;
+  line-height: 1.0em;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+p {
+  margin: 0 0 1em;
+}
+.dg.ac {
+  z-index: 100 !important;
+  //display: none;
+}
+
+#spooky-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#canvas {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  user-select: none;           /* Non-prefixed version, currently */
+}
+
+.image-rendering {
+  /* Image Rendering */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.safari-image-rendering {
+  image-rendering: auto;
+}
+
+/* Font Rendering */
+.webkit-font {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrolling */
+.webkit-smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}

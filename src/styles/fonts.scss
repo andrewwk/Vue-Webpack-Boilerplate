@@ -1,0 +1,23 @@
+/** Example Usage
+  * @font-face {
+  *    font-family: 'PosteramaRegular';
+  *   src: url('../fonts/posterama-regular/Posterama2001-Regular.eot');
+  *   src: url('../fonts/posterama-regular/Posterama2001-Regular.eot?#iefix') format('embedded-opentype'),
+  *        url('../fonts/posterama-regular/Posterama2001-Regular.woff2') format('woff2'),
+  *        url('../fonts/posterama-regular/Posterama2001-Regular.woff') format('woff'),
+  *       url('../fonts/posterama-regular/Posterama2001-Regular.ttf') format('truetype');
+  *   font-weight: normal;
+  *  font-style: normal;
+  * }
+  */
+
+/* @import must be at top of file, otherwise CSS will not work */
+/* Example 1: @import url("//hello.myfonts.net/count/33a910"); */
+
+/**
+  * Example 2:
+  * @font-face {font-family: 'Glence-Black';src: url('../webfonts/33D88C_0_0.eot');src: url('../webfonts/33D88C_0_0.eot?#iefix') format('embedded-opentype'),url('../webfonts/33D88C_0_0.woff2') format('woff2'),url('../webfonts/33D88C_0_0.woff') format('woff'),url('../webfonts/33D88C_0_0.ttf') format('truetype');}
+  */
+
+
+
